@@ -2,6 +2,9 @@
 '''
     Author: Eduardo Motta de Oliveira
 '''
+import numpy as np
+import matplotlib.pyplot as plt
+import networkx as nx
 
 def load(file):
 
@@ -33,8 +36,15 @@ def load(file):
 
     return None
 
+def show_graph_with_labels(adj_mat):
+    G = nx.from_numpy_matrix(np.array(adj_mat)) 
+    nx.draw(G, with_labels=True)
+    plt.show()
+
+
 if __name__ == "__main__":
     import sys
     filename = sys.argv[1]
     print 'opening ', filename
-    load(filename)
+    mat = load(filename)
+    show_graph_with_labels(mat)
