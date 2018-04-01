@@ -8,31 +8,33 @@ def load(file):
     f = open (file, "r")
     if f.mode == "r":
         lines = f.readlines()
-        i = 0
-        while lines[i][0] == '%':
-            i = i + 1
+        k = 0
+        while lines[k][0] == '%':
+            k = k + 1
 
-        h = lines[i][0:-1].split(' ')
+        h = lines[k][0:-1].split(' ')
 
         print 'Dimensoes: {m}x{n}, nao nulos: {nnul}'.format(m=h[0], n=h[1], nnul=h[2])
         
         mat = [ [ 0.0 for i in range(int(h[0])) ] for j in range(int(h[1])) ]
 
-        for l in lines[2:]:
-            str = l[0:-1].split(" ")
+        for l in lines[k:]:
+            str = l[0:-1].split()
 
             i = int(str[0]) - 1
             j = int(str[1]) - 1
-            value = float(str[2])
-            mat[i][j] = value
-
+            mat[i][j] = float(str[2])
+    
+        '''
         for row in mat:
             print row
-
+        '''
         return mat
 
     return None
 
 if __name__ == "__main__":
-    ''' Apenas teste '''
-    load('mat.mtx')
+    import sys
+    filename = sys.argv[1]
+    print 'opening ', filename
+    load(filename)
