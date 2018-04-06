@@ -23,7 +23,7 @@ for mat_name in mat_names:
         t=(time.time() - start_time), a=p.a, b=p.b, diameter=p.diameter)
 
     start_time = time.time()
-    p = gps.gps(mat)
+    p = gps.iterative_gps(mat, 10)
     print 't: {t} s,\t per: {a} e {b},\t diam: {diameter}'.format(
         t=(time.time() - start_time), a=p.a, b=p.b, diameter=p.diameter)
 

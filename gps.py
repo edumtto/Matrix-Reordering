@@ -7,16 +7,12 @@ import peripherals
 import random
 
 '''Original GPS'''
-def gps(m):
+def recursive_gps(m):
 
-    dimension = len(m)
+    dimension = len(m, iter)
     u = random.randint(0, dimension - 1)
-    '''
-    print 'Comecando busca por', u
-    '''
-    return recursive_rls(m, u, 3)
+    return recursive_rls(m, u, iter)
     
-        
 def recursive_rls(m, u, iter):
 
     rls_u = rls.buildRLS(m, u)
@@ -33,6 +29,32 @@ def recursive_rls(m, u, iter):
 
     return p
 
+def iterative_gps(m, iter):
+
+    dimension = len(m)
+    p = peripherals.Peripherals(0, 0, 0)
+    u = random.randint(0, dimension - 1)
+    explore = [u]
+    checked = [False for i in range(dimension)]
+    while iter > 0 and explore:
+        v = explore.pop(0)
+        rls_v = rls.buildRLS(m, v)
+        checked[v] = True
+        '''
+        print rls_v.levelsArray
+        '''
+        for w in rls_v.lastLevel():
+            if checked[w] == False:
+                explore.append(w)
+
+        p_v = peripherals.Peripherals(v, rls_v.lastLevel()[0], rls_v.numLevels() - 1)
+
+        if p_v.diameter > p.diameter:
+            p.copy(p_v)
+
+        iter = iter - 1
+
+    return p
 
 '''Main'''
 if __name__ == "__main__":
@@ -44,6 +66,6 @@ if __name__ == "__main__":
     mat_loader.show_graph_with_labels(mat)
     '''
     print ' '
-    p = gps(mat)
+    p = iterative_gps(mat, 10)
     print 'Pseudo-perifericos: {a} e {b}, Diametro: {diameter}'.format(
         a=p.a, b=p.b, diameter=p.diameter)

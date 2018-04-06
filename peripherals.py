@@ -20,7 +20,9 @@ def findPeripherals(m):
     p = Peripherals(0, 0, 0)
     for v in range(dimension):
         rls_v = rls.buildRLS(m, v)
+        '''
         print rls_v.levelsArray
+        '''
         p_v = Peripherals(v, rls_v.lastLevel()[0], rls_v.numLevels() - 1)
         if p_v.diameter > p.diameter:
             p.copy(p_v)
