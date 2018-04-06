@@ -2,47 +2,37 @@
     Author: Eduardo Motta de Oliveira
 '''
 import mat_loader
-import peripheral
+import rls
+import peripherals
 import random
-
-class Peripherals:
-
-    def __init__(self, a, b, dist):
-        self.a = a
-        self.b = b
-        self.dist = dist
-
-    def copy(self, p):
-        self.a = p.a
-        self.b = p.b
-        self.dist = p.dist
-    
-
-def recursive_rls(m, u, iter):
-
-    rls = peripheral.buildRLS(m, u)
-    p = Peripherals(u, rls.lastLevel()[0], rls.numLevels() - 1)
-
-    if iter == 1:
-        return p
-
-    for v in rls.lastLevel():
-        p_v = recursive_rls(m, v, iter - 1)
-        if p_v.dist > p.dist:
-            p.copy(p_v)
-
-    return p
 
 '''Original GPS'''
 def gps(m):
 
     dimension = len(m)
     u = random.randint(0, dimension - 1)
+    '''
     print 'Comecando busca por', u
-
-    p = recursive_rls(m, u, 3)
-    print 'Pseudo-perifericos: {a} e {b}, distancia: {dist}'.format(a=p.a, b=p.b, dist=p.dist)
+    '''
+    return recursive_rls(m, u, 3)
+    
         
+def recursive_rls(m, u, iter):
+
+    rls_u = rls.buildRLS(m, u)
+    print rls_u.levelsArray
+    p = peripherals.Peripherals(u, rls_u.lastLevel()[0], rls_u.numLevels() - 1)
+
+    if iter <= 1:
+        return p
+    print 'lastlevel: ',  rls_u.lastLevel()
+    for v in rls_u.lastLevel():
+        p_v = recursive_rls(m, v, iter - 1)
+        if p_v.diameter > p.diameter:
+            p.copy(p_v)
+
+    return p
+
 
 '''Main'''
 if __name__ == "__main__":
@@ -54,4 +44,6 @@ if __name__ == "__main__":
     mat_loader.show_graph_with_labels(mat)
     '''
     print ' '
-    gps(mat)
+    p = gps(mat)
+    print 'Pseudo-perifericos: {a} e {b}, Diametro: {diameter}'.format(
+        a=p.a, b=p.b, diameter=p.diameter)

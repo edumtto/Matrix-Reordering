@@ -56,7 +56,9 @@ def buildRLS(m, root):
 
 def eccentricity (m, root):
     rls = buildRLS(m,root)
+    '''
     print 'Ecc: ' + str(rls.numLevels() - 1) + '  ' + str(rls.levelsArray)
+    '''
     return rls.numLevels() - 1
 
 def diameter (m):   
@@ -67,7 +69,6 @@ def diameter (m):
         if ecc > maxEcc:
             maxEcc = ecc
     return maxEcc
-
 
 '''Main'''
 if __name__ == "__main__":
