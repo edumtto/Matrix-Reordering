@@ -5,6 +5,7 @@ import mat_loader
 import rls
 import peripherals
 import random
+import plot
 
 '''Original GPS'''
 def recursive_gps(m):
@@ -30,6 +31,7 @@ def recursive_rls(m, u, iter):
     return p
 
 def iterative_gps(m, iter):
+    plot_count = 0
 
     dimension = len(m)
     p = peripherals.Peripherals(0, 0, 0)
@@ -37,12 +39,16 @@ def iterative_gps(m, iter):
     explore = [u]
     checked = [False for i in range(dimension)]
     while iter > 0 and explore:
+
+        #plot.plot_graph(m, str(plot_count), checked)
+        #plot_count = plot_count + 1
+
         v = explore.pop(0)
         rls_v = rls.buildRLS(m, v)
         checked[v] = True
-        '''
-        print rls_v.levelsArray
-        '''
+        
+        #print rls_v.levelsArray
+        
         for w in rls_v.lastLevel():
             if checked[w] == False:
                 explore.append(w)

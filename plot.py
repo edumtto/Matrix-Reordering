@@ -5,14 +5,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import networkx as nx
 
+import os.path
+
 styles = {
     'graph': {
-        'overlap':'scale',
-        'splines':'true',
+        #'overlap':'scale',
+        #'splines':'true',
         'fontsize': '14',
         'fontcolor': 'white',
         'bgcolor': '#333333',
-        'rankdir': 'BT'
     },
     'nodes': {
         'fontname': 'Helvetica',
@@ -65,15 +66,15 @@ def apply_styles(graph, styles):
     )
     return graph
 
-def plot_graph(adj_mat, name, visited = None):
+def plot_graph(adj_mat, filename = None, highlighted = None):
     dimension = len(adj_mat)
     
     nodes = []
-    if visited is None:
+    if highlighted is None:
         nodes = [str(i) for i in range(dimension)]
     else:
         nodes = [(str(i), {'style': 'filled', 
-                            'fillcolor': 'red' if visited[i] else '#006699'
+                            'fillcolor': 'red' if highlighted[i] else '#006699'
                             }) for i in range(dimension)]
     
     edges = []
@@ -90,4 +91,11 @@ def plot_graph(adj_mat, name, visited = None):
     g = add_nodes(g, nodes)
     g = add_edges(g, edges)
     
-    g.render('img/g')
+    filepath = 'img/g'
+    if filename:
+        tail = filename.split('/')[-1]
+        name = tail.split('.')[0]
+        filepath = 'img/{}'.format(name)
+
+    print 'Plot em {}.svg'.format(filepath)    
+    g.render(filepath)
