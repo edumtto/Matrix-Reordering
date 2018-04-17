@@ -55,17 +55,3 @@ def iterative_gps(m, iter):
         iter = iter - 1
 
     return p
-
-'''Main'''
-if __name__ == "__main__":
-    import sys
-    filename = sys.argv[1]
-    print 'importing ', filename
-    mat = mat_loader.load(filename)
-    '''
-    mat_loader.show_graph_with_labels(mat)
-    '''
-    print ' '
-    p = iterative_gps(mat, 10)
-    print 'Pseudo-perifericos: {a} e {b}, Diametro: {diameter}'.format(
-        a=p.a, b=p.b, diameter=p.diameter)
