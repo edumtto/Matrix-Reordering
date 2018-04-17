@@ -11,7 +11,7 @@
 <polygon fill="#333333" stroke="none" points="-4,4 -4,-184 237,-184 237,4 -4,4"/>
 <!-- 0 -->
 <g id="node1" class="node"><title>0</title>
-<ellipse fill="#006699" stroke="white" cx="95" cy="-18" rx="18" ry="18"/>
+<ellipse fill="red" stroke="white" cx="95" cy="-18" rx="18" ry="18"/>
 <text text-anchor="middle" x="95" y="-14.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">0</text>
 </g>
 <!-- 2 -->
@@ -57,7 +57,7 @@
 </g>
 <!-- 3 -->
 <g id="node4" class="node"><title>3</title>
-<ellipse fill="#006699" stroke="white" cx="161" cy="-90" rx="18" ry="18"/>
+<ellipse fill="red" stroke="white" cx="161" cy="-90" rx="18" ry="18"/>
 <text text-anchor="middle" x="161" y="-86.3" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">3</text>
 </g>
 <!-- 8 -->

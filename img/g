@@ -2,16 +2,16 @@ graph {
 	graph [bgcolor="#333333" fontcolor=white fontsize=14 overlap=scale rankdir=BT splines=true]
 	node [color=white fillcolor="#006699" fontcolor=white fontname=Helvetica shape=circle style=filled]
 	edge [arrowhead=open color=white fontcolor=white fontname=Courier fontsize=12 style=solid]
-	0
-	1
-	2
-	3
-	4
-	5
-	6
-	7
-	8
-	9
+	0 [fillcolor=red style=filled]
+	1 [fillcolor="#006699" style=filled]
+	2 [fillcolor="#006699" style=filled]
+	3 [fillcolor=red style=filled]
+	4 [fillcolor="#006699" style=filled]
+	5 [fillcolor="#006699" style=filled]
+	6 [fillcolor="#006699" style=filled]
+	7 [fillcolor="#006699" style=filled]
+	8 [fillcolor="#006699" style=filled]
+	9 [fillcolor="#006699" style=filled]
 	0 -- 2
 	0 -- 7
 	1 -- 4

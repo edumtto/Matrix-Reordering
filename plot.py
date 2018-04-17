@@ -20,7 +20,7 @@ styles = {
         'fontcolor': 'white',
         'color': 'white',
         'style': 'filled',
-        'fillcolor': '#006699',
+        'fillcolor':'#006699'
     },
     'edges': {
         'style': 'solid',
@@ -69,13 +69,13 @@ def plot_graph(adj_mat, name, visited = None):
     dimension = len(adj_mat)
     
     nodes = []
-    if visited:
-        for v in visited:
-            fillcolor = 'green' if visited[v] != 0 else '#006699'
-            nodes = [(str(i), {'color': fillcolor}) for i in range(dimension)]
-    else:
+    if visited is None:
         nodes = [str(i) for i in range(dimension)]
-
+    else:
+        nodes = [(str(i), {'style': 'filled', 
+                            'fillcolor': 'red' if visited[i] else '#006699'
+                            }) for i in range(dimension)]
+    
     edges = []
     for i in range(dimension-1):
         for j in range(i+1, dimension):
@@ -84,7 +84,9 @@ def plot_graph(adj_mat, name, visited = None):
 
     graph = functools.partial(gv.Graph, format='svg')
     g = graph()
+    
     g = apply_styles(g, styles)
+    
     g = add_nodes(g, nodes)
     g = add_edges(g, edges)
     

@@ -16,8 +16,11 @@ filename = sys.argv[1]
 print 'importing ', filename
 mat = mat_loader.load(filename)
 
+visited = [False for i in range(len(mat))]
+visited[3] = True
+visited[0] = True
 
-plot.plot_graph(mat, filename)
+plot.plot_graph(mat, filename, visited)
 '''
 plot.show_graph_pyplot(mat)
 '''
