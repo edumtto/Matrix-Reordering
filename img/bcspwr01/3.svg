@@ -92,7 +92,7 @@
 </g>
 <!-- 4 -->
 <g id="node5" class="node"><title>4</title>
-<ellipse fill="#006699" stroke="white" cx="530.798" cy="-865.963" rx="18" ry="18"/>
+<ellipse fill="red" stroke="white" cx="530.798" cy="-865.963" rx="18" ry="18"/>
 <text text-anchor="middle" x="530.798" y="-862.263" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">4</text>
 </g>
 <!-- 5 -->
@@ -115,7 +115,7 @@
 </g>
 <!-- 6 -->
 <g id="node7" class="node"><title>6</title>
-<ellipse fill="#006699" stroke="white" cx="451.798" cy="-719.165" rx="18" ry="18"/>
+<ellipse fill="red" stroke="white" cx="451.798" cy="-719.165" rx="18" ry="18"/>
 <text text-anchor="middle" x="451.798" y="-715.465" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">6</text>
 </g>
 <!-- 5&#45;&#45;6 -->
@@ -177,7 +177,7 @@
 </g>
 <!-- 31 -->
 <g id="node32" class="node"><title>31</title>
-<ellipse fill="red" stroke="white" cx="296.798" cy="-719.165" rx="20.5982" ry="20.5982"/>
+<ellipse fill="#006699" stroke="white" cx="296.798" cy="-719.165" rx="20.5982" ry="20.5982"/>
 <text text-anchor="middle" x="296.798" y="-715.465" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">31</text>
 </g>
 <!-- 9&#45;&#45;31 -->
@@ -221,7 +221,7 @@
 </g>
 <!-- 16 -->
 <g id="node17" class="node"><title>16</title>
-<ellipse fill="#006699" stroke="white" cx="242.798" cy="-253.587" rx="20.5982" ry="20.5982"/>
+<ellipse fill="red" stroke="white" cx="242.798" cy="-253.587" rx="20.5982" ry="20.5982"/>
 <text text-anchor="middle" x="242.798" y="-249.887" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">16</text>
 </g>
 <!-- 15&#45;&#45;16 -->
@@ -288,7 +288,7 @@
 </g>
 <!-- 33 -->
 <g id="node34" class="node"><title>33</title>
-<ellipse fill="#006699" stroke="white" cx="340.798" cy="-98.3945" rx="20.5982" ry="20.5982"/>
+<ellipse fill="red" stroke="white" cx="340.798" cy="-98.3945" rx="20.5982" ry="20.5982"/>
 <text text-anchor="middle" x="340.798" y="-94.6945" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">33</text>
 </g>
 <!-- 19&#45;&#45;33 -->
@@ -381,7 +381,7 @@
 </g>
 <!-- 37 -->
 <g id="node38" class="node"><title>37</title>
-<ellipse fill="red" stroke="white" cx="49.7982" cy="-331.183" rx="20.5982" ry="20.5982"/>
+<ellipse fill="#006699" stroke="white" cx="49.7982" cy="-331.183" rx="20.5982" ry="20.5982"/>
 <text text-anchor="middle" x="49.7982" y="-327.483" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">37</text>
 </g>
 <!-- 28&#45;&#45;37 -->

@@ -34,6 +34,7 @@ def getNotVisitedAdjacents(m, vertex, visited):
         if val != 0:
             if visited[i] == False:
                 adj.append(i)
+    
     return adj
 
 def buildRLS(m, root):

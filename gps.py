@@ -36,15 +36,12 @@ def iterative_gps(m, iter):
     dimension = len(m)
     p = peripherals.Peripherals(0, 0, 0)
 
-    u = random.randint(0, dimension - 1)
-    #u = get_min_degree_node(m)
+    #root = random.randint(0, dimension - 1)
+    root = get_min_degree_node(m)
 
-    explore = [u]
+    explore = [root]
     checked = [False for i in range(dimension)]
     while iter > 0 and explore:
-        
-        #plot.plot_graph(m, str(plot_count), checked)
-        #plot_count = plot_count + 1
 
         v = explore.pop(0)
         rls_v = rls.buildRLS(m, v)
@@ -63,6 +60,11 @@ def iterative_gps(m, iter):
 
         iter = iter - 1
 
+        #plot.plot_graph(m, str(plot_count), checked)
+        #plot_count = plot_count + 1
+
+    #checked[p.b] = True
+    #plot.plot_graph(m, str(plot_count), checked)
     return p
 
 def get_min_degree_node(m):
@@ -75,7 +77,7 @@ def get_min_degree_node(m):
     for i in range(dimension):
         degree = numpy.count_nonzero(m[i])
         if degree < min_degree:
-            print '{} < {}'.format(degree, min_degree)
+            #print '{} < {}'.format(degree, min_degree)
             min_degree = degree
             min_degree_node = i
     
