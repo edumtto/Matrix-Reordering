@@ -30,14 +30,15 @@ def recursive_rls(m, u, iter):
 
     return p
 
-def iterative_gps(m, iter):
+def iterative_gps(m, iter, min_degree = False):
     plot_count = 0
 
     dimension = len(m)
     p = peripherals.Peripherals(0, 0, 0)
 
-    #root = random.randint(0, dimension - 1)
-    root = get_min_degree_node(m)
+    root = ( get_min_degree_node(m)
+            if min_degree
+            else random.randint(0, dimension - 1) )
 
     explore = [root]
     checked = [False for i in range(dimension)]

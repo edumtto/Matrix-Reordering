@@ -34,8 +34,12 @@ mat = mat_loader.load(filename)
 print ' '
 start_time = time.time()
 
-#p = gps.iterative_gps(mat, 50)
-p = arany.arany_method(mat)
+#p = gps.iterative_gps(mat, 15, min_degree=True)
+p = arany.arany_method(mat, min_degree=True, min_width=True)
+
+print 'rls iteractions:', rls.buildRLS_count
+print 'rls canceled:', rls.buildRLS_canceled
+print ' '
 
 print 'Pseudo-perifericos: {a} e {b}, Diametro: {diameter}'.format(
     a=p.a, b=p.b, diameter=p.diameter)

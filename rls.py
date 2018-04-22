@@ -3,6 +3,9 @@
 '''
 import mat_loader
 
+buildRLS_count = 0
+buildRLS_canceled = 0
+
 class RLS:
 
     def __init__(self):
@@ -12,17 +15,29 @@ class RLS:
         self.levelsArray.append(array)  
 
 
-    def isPresent(self, vertex):
+    '''def isPresent(self, vertex):
         for l in self.levelsArray:
             if vertex in l:
                 return True
         return False
-
+    '''
     def lastLevel(self):
         return self.levelsArray[-1]
 
     def numLevels(self):
         return len(self.levelsArray)
+
+    def width(self):
+        max_w = 0
+        for l in self.levelsArray:
+            w_level = len(l)
+            if w_level > max_w:
+                max_w = w_level
+        return max_w
+
+    def printRLS (self):
+        print self.levelsArray
+
 
 
 def getNotVisitedAdjacents(m, vertex, visited):
@@ -34,21 +49,32 @@ def getNotVisitedAdjacents(m, vertex, visited):
         if val != 0:
             if visited[i] == False:
                 adj.append(i)
-    
     return adj
 
-def buildRLS(m, root):
+def buildRLS(m, root, max_w = 0):
+    global buildRLS_count, buildRLS_canceled
+    buildRLS_count += 1
+
+    limit_width = (max_w != 0)
+
     levels = RLS()
     visited = [False for j in range(len(m))]
     l = [root]
 
     while (l):
+        if limit_width:
+            if len(l) >= max_w:
+                buildRLS_canceled += 1
+                return None
+
         levels.addLevel(l)
         for x in l:
             visited[x] = True
         l = []
+
         for v in levels.lastLevel():
             adj = getNotVisitedAdjacents(m, v, visited)
+            
             for a in adj:
                 visited[a] = True
                 l.append(a)

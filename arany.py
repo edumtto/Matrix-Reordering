@@ -7,46 +7,64 @@ import peripherals
 import random
 
 '''Original Arany'''
-def arany_method(m):
+def arany_method(m, min_degree = False, min_width = False):
 
     dimension = len(m)
-
-    #root = random.randint(0, dimension - 1)
-    root = get_min_degree_node(m)
-
-    explore = [root]
     checked = [False for i in range(dimension)]
-    while iter > 0 and explore:
 
-        u = explore.pop(0)
-        rls_u = rls.buildRLS(m, u)
-        #checked[u] = True
-        #print rls_u.levelsArray
+    u = ( get_min_degree_node(m)
+            if min_degree
+            else random.randint(0, dimension - 1) )
 
-        v = rls_u.lastLevel()[0]
-        rls_v = rls.buildRLS(m, v)
-        #print rls_v.levelsArray
+    rls_u = rls.buildRLS(m, u)
+    #checked[u] = True
+    #print rls_u.levelsArray
 
-        reversible_set = get_intersection(rls_u.levelsArray, rls_v.levelsArray)
-        #print reversible_set
+    v = rls_u.lastLevel()[0]
+    rls_v = rls.buildRLS(m, v)
+    #print rls_v.levelsArray
 
-        m_uv = reversible_set[len(reversible_set) // 2]
-        #print m_uv
+    reversible_set = get_intersection(rls_u.levelsArray, 
+                                      rls_v.levelsArray)
+    #print reversible_set
 
-        a = m_uv.pop()
-        rls_a = rls.buildRLS(m, a)
-   
-        p = peripherals.Peripherals(0, 0, 0)
+    m_uv = reversible_set[len(reversible_set) // 2]
+    #print m_uv
 
-        for x in rls_a.lastLevel():
+    a = m_uv.pop()
+    rls_a = rls.buildRLS(m, a)
+
+    return grow_level_and_check_peripherals(m, 
+                                            rls_a.lastLevel(), 
+                                            min_width = min_width)
+    
+def grow_level_and_check_peripherals(m, level, min_width = False):
+    
+    p = peripherals.Peripherals(0, 0, 0)
+    width_limit = len(m)
+  
+    print 'growing level size', len(level)
+    if min_width:
+        for x in level:
+            rls_x = rls.buildRLS(m, x, max_w = width_limit)
+            if rls_x:
+                width_limit = rls_x.width()
+                p_x = peripherals.Peripherals(x,
+                                             rls_x.lastLevel()[0], 
+                                             rls_x.numLevels() - 1)
+                if p_x.diameter >= p.diameter:
+                    print 'min_width:', width_limit 
+                    p.copy(p_x) 
+
+    else: 
+        for x in level:
             rls_x = rls.buildRLS(m, x)
             p_x = peripherals.Peripherals(x, rls_x.lastLevel()[0], rls_x.numLevels() - 1)
 
             if p_x.diameter > p.diameter:
                 p.copy(p_x)
-
-    return p
     
+    return p
 
 ''' The reversible set R(u,v) is the set of vertices
 which lie on a shortest path from u to v.
