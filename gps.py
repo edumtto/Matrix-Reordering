@@ -6,6 +6,7 @@ import rls
 import peripherals
 import random
 import plot
+import util
 
 '''Original GPS'''
 def recursive_gps(m):
@@ -36,7 +37,7 @@ def iterative_gps(m, iter, min_degree = False):
     dimension = len(m)
     p = peripherals.Peripherals(0, 0, 0)
 
-    root = ( get_min_degree_node(m)
+    root = ( util.get_min_degree_node(m)
             if min_degree
             else random.randint(0, dimension - 1) )
 
@@ -67,20 +68,3 @@ def iterative_gps(m, iter, min_degree = False):
     #checked[p.b] = True
     #plot.plot_graph(m, str(plot_count), checked)
     return p
-
-def get_min_degree_node(m):
-    dimension = len(m)
-
-    import numpy
-    min_degree_node = 0
-    min_degree = numpy.count_nonzero(m[0])
-
-    for i in range(dimension):
-        degree = numpy.count_nonzero(m[i])
-        if degree < min_degree:
-            #print '{} < {}'.format(degree, min_degree)
-            min_degree = degree
-            min_degree_node = i
-    
-    print 'min degree node: {}'.format(min_degree_node)
-    return min_degree_node

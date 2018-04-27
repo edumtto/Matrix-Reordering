@@ -1,5 +1,6 @@
 import unittest
-import peripheral
+import rls
+import peripherals
 
 class TestPeripheral(unittest.TestCase):
 
@@ -20,19 +21,19 @@ class TestPeripheral(unittest.TestCase):
 
     def test_getNotVisitedAdjacents(self):
         print 'test_getNotVisitedAdjacents'
-        result = peripheral.getNotVisitedAdjacents(self.m0,2,self.visited_m0)
+        result = rls.getNotVisitedAdjacents(self.m0,2,self.visited_m0)
         self.assertEqual(result, [0,4])
-        result = peripheral.getNotVisitedAdjacents(self.m0,5,self.visited_m0)
+        result = rls.getNotVisitedAdjacents(self.m0,5,self.visited_m0)
         self.assertEqual(result, [])
         self.visited_m0[0] = True
-        result = peripheral.getNotVisitedAdjacents(self.m0,2,self.visited_m0)
+        result = rls.getNotVisitedAdjacents(self.m0,2,self.visited_m0)
         self.assertEqual(result, [4])
 
     def test_buildRLS(self):
         print 'test_buildRLS'
-        result = peripheral.buildRLS(self.m0,0)
+        result = rls.buildRLS(self.m0,0)
         self.assertEqual(result.levelsArray, [[0],[1,2],[3,4]])
-        result = peripheral.buildRLS(self.m0,5)
+        result = rls.buildRLS(self.m0,5)
         self.assertEqual(result.levelsArray, [[5]])
 
 if __name__ == "__main__":
