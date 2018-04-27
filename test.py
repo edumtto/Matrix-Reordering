@@ -8,7 +8,6 @@ import time
 mat_names = [
     'mat.mtx',
     'sample.mtx',
-    'matrix_example.mtx',
     'bcspwr01.mtx',
     'can24.mtx',
     'bcspwr02.mtx',
