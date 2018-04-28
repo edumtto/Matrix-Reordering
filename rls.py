@@ -10,16 +10,16 @@ class RLS:
 
     def __init__(self):
         self.levelsArray = []
-        self.nonConsequents = set()
+        self.noConsequents = set()
 
     def addLevel(self, array):
         self.levelsArray.append(array)  
 
     def addNonConsequent(self, n):
-        self.nonConsequents.add(n)
+        self.noConsequents.add(n)
 
     def removeNonConsequent(self, n):
-        self.nonConsequents.discard(n)
+        self.noConsequents.discard(n)
 
     '''def isPresent(self, vertex):
         for l in self.levelsArray:
@@ -29,6 +29,9 @@ class RLS:
     '''
     def lastLevel(self):
         return self.levelsArray[-1]
+
+    def getLevel(self, i):
+        return self.levelsArray[i]
 
     def numLevels(self):
         return len(self.levelsArray)
@@ -44,8 +47,6 @@ class RLS:
     def printRLS (self):
         print self.levelsArray
 
-
-
 def getNotVisitedAdjacents(m, vertex, visited):
     adj = []
     tam = len(m[0])
@@ -57,42 +58,7 @@ def getNotVisitedAdjacents(m, vertex, visited):
                 adj.append(i)
     return adj
 
-def buildRLS(m, root, max_w = 0, non_conseq = False):
-    global buildRLS_count, buildRLS_canceled
-    buildRLS_count += 1
-
-    limit_width = (max_w != 0)
-
-    rls = RLS()
-    visited = [False for j in range(len(m))]
-    l = [root]
-
-    while (l):
-        if limit_width:
-            if len(l) >= max_w:
-                buildRLS_canceled += 1
-                return None
-
-        rls.addLevel(l)
-        for x in l:
-            visited[x] = True
-        l = []
-
-        for v in rls.lastLevel():
-            adj = getNotVisitedAdjacents(m, v, visited)
-            if non_conseq and not adj:
-                rls.addNonConsequent(v)
-            for a in adj:
-                visited[a] = True
-                l.append(a)
-
-        if non_conseq:
-            for u in rls.lastLevel():
-                    rls.removeNonConsequent(u)
-
-    return rls
-
-def buildRLS(m, root, max_w = 0, non_conseq = False):
+def buildRLS(m, root, max_w = 0, no_conseq = False):
     global buildRLS_count, buildRLS_canceled
     buildRLS_count += 1
 
@@ -115,7 +81,7 @@ def buildRLS(m, root, max_w = 0, non_conseq = False):
         adj_set =set()
         for v in rls.lastLevel():
             adj = getNotVisitedAdjacents(m, v, visited)
-            if non_conseq and not adj:
+            if no_conseq and not adj:
                 rls.addNonConsequent(v)
             for a in adj:
                 adj_set.add(a)
@@ -124,7 +90,7 @@ def buildRLS(m, root, max_w = 0, non_conseq = False):
             visited[a] = True
         l = list(adj_set)
 
-    if non_conseq:
+    if no_conseq:
         for u in rls.lastLevel():
                 rls.removeNonConsequent(u)
     
