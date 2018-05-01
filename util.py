@@ -35,6 +35,25 @@ def get_min_degree_node(m):
     return min_degree_node
 
 
+def min_degree_node_from_set (mat, set):
+    dimension = len(mat)
+    min_degree = dimension
+    min_degree_node = 0
+
+    for n in set:
+        degree = 0
+        for j in range(len(mat)):
+            if degree < min_degree:
+                if mat[n][j] != 0 and j != n:
+                    degree += 1
+        
+        if degree < min_degree:
+            min_degree = degree
+            min_degree_node = n
+
+    return min_degree_node
+
+
 def grow_set_and_check_peripherals(m, set, min_width = False, initial_p = None):
     ''' ([[]], list or set, bool) -> Peripheral '''
 
@@ -52,7 +71,7 @@ def grow_set_and_check_peripherals(m, set, min_width = False, initial_p = None):
                                              rls_x.lastLevel()[0], 
                                              rls_x.numLevels() - 1)
                 if p_x.diameter >= p.diameter:
-                    print 'min_width:', width_limit 
+                    #print 'min_width:', width_limit 
                     p.copy(p_x) 
 
     else: 
@@ -74,21 +93,5 @@ def return_most_peripheral(u, rls_u, v, rls_v):
         return p_u
     return p_v
 
-def smaller_degree_node (mat, set):
-    dimension = len(mat)
-    sm_degree = dimension
-    sm_degree_node = 0
-    
-    for n in set:
-        degree = 0
-        for j in len(mat):
-            if degree < sm_degree_node:
-                if j != 0 && j != n:
-                    degree += 1
-                    
-        if degree < sm_degree:
-            sm_degree = degree
-            sm_degree_node = n
 
-    return sm_degree_node
 

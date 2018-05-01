@@ -16,12 +16,9 @@ def build_uv_rls(m, min_degree = False, no_conseq = False):
             else random.randint(0, dimension - 1) )
 
     rls_u = rls.buildRLS(m, u, max_w=0, no_conseq=no_conseq)
-    #checked[u] = True
-    #print rls_u.levelsArray
 
-    v = rls_u.lastLevel()[0]
+    v = util.min_degree_node_from_set(m, rls_u.lastLevel())
     rls_v = rls.buildRLS(m, v, max_w=0, no_conseq=no_conseq)
-    #print rls_v.levelsArray
 
     return u, v, rls_u, rls_v, dimension
 
@@ -72,7 +69,7 @@ def noConsequent_u(m, min_degree = False, min_width = False):
     rls_u = rls.buildRLS(m, u, max_w=0, no_conseq=True)
     no_conseq_u = rls_u.noConsequents
     
-    p = util.return_most_peripheral(u, rls_u, v, rls_v)
+    p = peripherals.Peripherals(u, rls_u.lastLevel()[0], rls_u.numLevels() - 1)
     return util.grow_set_and_check_peripherals(m, no_conseq_u, 
                                                 min_width=min_width,
                                                 initial_p=p)
