@@ -65,6 +65,7 @@ def grow_set_and_check_peripherals(m, set, min_width = False, initial_p = None):
     if min_width:
         for x in set:
             rls_x = rls.buildRLS(m, x, max_w = width_limit)
+            #print (rls_x.levelsArray if rls_x else "a")
             if rls_x:
                 width_limit = rls_x.width()
                 p_x = peripherals.Peripherals(x,

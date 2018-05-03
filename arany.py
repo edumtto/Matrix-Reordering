@@ -30,7 +30,6 @@ def arany_method(m, min_degree = False, min_width = False):
 
     reversible_set = util.get_reversible_set(rls_u.levelsArray, 
                                       rls_v.levelsArray)
-    #print reversible_set
 
     m_uv = reversible_set[len(reversible_set) // 2]
     #print m_uv

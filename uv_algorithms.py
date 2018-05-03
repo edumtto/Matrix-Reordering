@@ -50,8 +50,10 @@ def noConsequent_uv(m, min_degree = False, min_width = False):
                                                  no_conseq=True)
     ''' Q(u) U Q(v) - {u, v} '''
     no_conseq_set = rls_u.noConsequents.union(rls_v.noConsequents)
-    #no_conseq_set.remove(u)
-    #no_conseq_set.remove(v)
+
+    if u in no_conseq_set:
+        no_conseq_set.remove(u)
+    #no_conseq_set.remove(v)   
     
     p = util.return_most_peripheral(u, rls_u, v, rls_v)
     return util.grow_set_and_check_peripherals(m, no_conseq_set,
@@ -68,7 +70,7 @@ def noConsequent_u(m, min_degree = False, min_width = False):
 
     rls_u = rls.buildRLS(m, u, max_w=0, no_conseq=True)
     no_conseq_u = rls_u.noConsequents
-    
+
     p = peripherals.Peripherals(u, rls_u.lastLevel()[0], rls_u.numLevels() - 1)
     return util.grow_set_and_check_peripherals(m, no_conseq_u, 
                                                 min_width=min_width,
