@@ -22,10 +22,10 @@ def print_fill_in(m):
 
 def run_method(mat, id):
     if id == 0:
-        #return peripherals.exaustive_peripheral_search(mat, thread = 1)
-        return peripherals.parallel_exaustive_peripheral_search(mat)
+        return peripherals.exaustive_peripheral_search(mat, thread = 1)
+        #return peripherals.parallel_exaustive_peripheral_search(mat)
     if id == 1:
-        return gps.iterative_gps(mat, 15, min_degree=True)
+        return gps.iterative_gps(mat, 3, min_degree=True)
     if id == 2:
         return arany.arany_method(mat, min_degree=True, min_width=True)
     if id == 3: 

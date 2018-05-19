@@ -49,11 +49,11 @@ def exaustive_peripheral_search(m, fromV = None, toV = None, output = None, thre
         if thread:
             if iter % 100 == 0:
                 print 'Thread {}: node {} checked - {:0.2f}%'.format(thread,v,percentage)
-        else:
-            sys.stdout.write("\r{} / {} - {:0.2f}%".format(v,V_size,percentage))
-            sys.stdout.flush()
+        #else:
+        #    sys.stdout.write("\r{} / {} - {:0.2f}%".format(v,V_size,percentage))
+        #    sys.stdout.flush()
 
-    print p.toStr()
+    #print p.toStr()
     if output:
         output.put(p)
     return p

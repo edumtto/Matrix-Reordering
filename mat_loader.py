@@ -14,7 +14,7 @@ def load(file):
 
         h = lines[k][0:-1].split(' ')
 
-        print 'Dimensoes: {m}x{n}, nao nulos: {nnul}'.format(m=h[0], n=h[1], nnul=h[2])
+        #print 'Dimensoes: {m}x{n}, nao nulos: {nnul}'.format(m=h[0], n=h[1], nnul=h[2])
         
         mat = [ [ 0.0 for i in range(int(h[0])) ] for j in range(int(h[1])) ]
 

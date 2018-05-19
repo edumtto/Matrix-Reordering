@@ -1,6 +1,6 @@
 import rls
 import peripherals
-
+import sys
 
 def get_reversible_set(ls_u, ls_v):
     ''' ([[]], [[]],) -> [set]
@@ -31,7 +31,7 @@ def get_min_degree_node(m):
             min_degree = degree
             min_degree_node = i
     
-    print 'min degree node: {}'.format(min_degree_node)
+    #print 'min degree node: {}'.format(min_degree_node)
     return min_degree_node
 
 
@@ -61,7 +61,10 @@ def grow_set_and_check_peripherals(m, set, min_width = False, initial_p = None):
     
     width_limit = len(m)
   
+    set_size = len(set)
     print 'growing set size', len(set)
+
+    iter = 0
     if min_width:
         for x in set:
             rls_x = rls.buildRLS(m, x, max_w = width_limit)
@@ -75,6 +78,10 @@ def grow_set_and_check_peripherals(m, set, min_width = False, initial_p = None):
                     #print 'min_width:', width_limit 
                     p.copy(p_x) 
 
+            iter += 1
+            percentage = 100 * float(iter)/set_size
+            sys.stdout.write("\r{} / {} - {:0.2f}%".format(iter,set_size,percentage))
+            sys.stdout.flush()
     else: 
         for x in set:
             rls_x = rls.buildRLS(m, x)
