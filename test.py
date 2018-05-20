@@ -9,8 +9,8 @@ import sys
 
 def run_method(mat, id):
     if id == 0:
-        return peripherals.exaustive_peripheral_search(mat)
-        #return peripherals.parallel_exaustive_peripheral_search(mat)
+        #return peripherals.exaustive_peripheral_search(mat)
+        return peripherals.parallel_exaustive_peripheral_search(mat)
     if id == 1:
         return gps.iterative_gps(mat, 3, min_degree=True)
     if id == 2:
@@ -27,14 +27,15 @@ def run_method(mat, id):
     return None
 
 '''
+    
+'''
+mat_names = [
     'mat.mtx',
     'sample.mtx',
     'bcspwr01.mtx',
     'can24.mtx',
     'bcspwr02.mtx',
     'fidap001.mtx',
-'''
-mat_names = [
     'rail_5177.mtx',
     'dw8192.mtx',
     'fidapm08.mtx',

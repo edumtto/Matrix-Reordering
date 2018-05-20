@@ -41,37 +41,47 @@ def run_method(mat, id):
     return None
 
 
-if len(sys.argv) < 3:
-    print 'Usage: python main.py ./matrices/mat.mtx 1'
-    sys.exit (1)
+if __name__ == "__main__":
+        
+    if len(sys.argv) < 3:
+        print 'Usage: python main.py ./matrices/mat.mtx 1'
+        sys.exit (1)
 
-filename = sys.argv[1]
-print 'importing ', filename
-mat = mat_loader.load(filename)
+    filename = sys.argv[1]
+    print 'importing ', filename
+    mat = mat_loader.load(filename)
 
-methods = ['Exaustive','GPS','Arany','Non-Reversible(u,v)',
-            'No Consequent(u)','No Consequent(u,v)','MaximumSwing(u,v)']
-method_id = int(sys.argv[2])
-print ''
-print 'Running: {}'.format(methods[method_id])
+    methods = ['Exaustive','GPS','Arany','Non-Reversible(u,v)',
+                'No Consequent(u)','No Consequent(u,v)','MaximumSwing(u,v)']
+    method_id = int(sys.argv[2])
+    
+    if method_id > len(methods) - 1:
+        print '\nMetodo invalido!'
+        print '\nCodigo dos metodos disponiveis:'
+        for i in range(len(methods)):
+            print '{}: {}'.format(i, methods[i])
+        sys.exit(0)
 
-''' Plots '''
-#plot.plot_graph(mat, filename)
-#plot.show_graph_pyplot(mat)
-#print_fill_in(mat)  
+    print ''
+    print 'Running: {}'.format(methods[method_id])
 
-print ' '
-start_time = time.time()
+    ''' Plots '''
+    #plot.plot_graph(mat, filename)
+    #plot.show_graph_pyplot(mat)
+    #print_fill_in(mat)  
 
-''' Execution '''
-p = run_method(mat, method_id)
+    print ' '
+    start_time = time.time()
 
-print ' '
-print 'rls iteractions:', rls.buildRLS_count
-print 'rls canceled:', rls.buildRLS_canceled
-print ' '
+    ''' Execution '''
+    p = run_method(mat, method_id)
 
-print 'Tempo: {}s'.format(time.time() - start_time)
-print 'Pseudo-perifericos: {a} e {b}, Diametro: {diameter}'.format(
-    a=p.a, b=p.b, diameter=p.diameter)
+    print ' '
+    print 'rls iteractions:', rls.buildRLS_count
+    print 'rls canceled:', rls.buildRLS_canceled
+    print ' '
+
+    print 'Tempo: {}s'.format(time.time() - start_time)
+    print 'Pseudo-perifericos: {a} e {b}, Diametro: {diameter}'.format(
+        a=p.a, b=p.b, diameter=p.diameter)
 

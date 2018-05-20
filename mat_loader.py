@@ -54,6 +54,7 @@ def load(file):
             v = int(strs[1]) - 1
             if u != v:
                 g.add_edge(u, v)
+                #g.add_edge(v, u)
 
         return g
 

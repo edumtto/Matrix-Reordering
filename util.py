@@ -49,26 +49,7 @@ def min_degree_node_from_set (mat, set):
             min_degree_node = n
 
     return min_degree_node
-
-'''
-def min_degree_node_from_set (mat, set):
-    dimension = mat.get_dimension()
-    min_degree = dimension
-    min_degree_node = 0
-
-    for n in set:
-        degree = 0  # ISSO ESTA CERTO ?
-        for j in range(mat.get_dimension()):
-            if degree < min_degree:
-                if mat[n][j] != 0 and j != n:
-                    degree += 1
-        
-        if degree < min_degree:
-            min_degree = degree
-            min_degree_node = n
-
-    return min_degree_node
-'''
+    
 
 def grow_set_and_check_peripherals(m, set, min_width = False, initial_p = None):
     ''' ([[]], list or set, bool) -> Peripheral '''

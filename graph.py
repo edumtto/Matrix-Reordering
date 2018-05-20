@@ -26,14 +26,17 @@ class Graph:
     def get_dimension(self):
         return self.dimension
 
-     def __len__(self):
+    def __len__(self):
         return self.dimension
 
-    def get_neighboors(self, v):
+    def get_neighbours(self, v):
         return self.adjacencies[v]
 
-'''
+    def get_degree(self, v):
+        return len(self.adjacencies[v])
 
+
+'''
 
 class Graph:
 

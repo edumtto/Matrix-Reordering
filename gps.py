@@ -13,6 +13,8 @@ import time
 import sys
 
 '''Original GPS'''
+
+'''
 def recursive_gps(m):
 
     dimension = len(m, iter)
@@ -34,6 +36,7 @@ def recursive_rls(m, u, iter):
             p.copy(p_v)
 
     return p
+'''
 
 def iterative_gps(m, iter, min_degree = False):
     plot_count = 0
