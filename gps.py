@@ -1,6 +1,7 @@
 '''
     Author: Eduardo Motta de Oliveira
 '''
+import graph
 import mat_loader
 import rls
 import peripherals

@@ -1,5 +1,6 @@
 import rls
 import mat_loader
+import graph
 import multiprocessing as mp
 import sys
 
@@ -20,7 +21,7 @@ class Peripherals:
 
 
 def exaustive_peripheral_search(m, fromV = None, toV = None, output = None, thread = None):
-    dimension = len(m)
+    dimension = m.get_dimension()
 
     begin = fromV if fromV else 0
     end = toV if toV else dimension

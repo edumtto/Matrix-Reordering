@@ -18,14 +18,14 @@ def get_reversible_set(ls_u, ls_v):
 def get_min_degree_node(m):
     ''' ([[]]) -> int '''
 
-    dimension = len(m)
+    dimension = m.get_dimension()
 
     import numpy
     min_degree_node = 0
-    min_degree = numpy.count_nonzero(m[0])
+    min_degree = m.get_degree(0)
 
     for i in range(dimension):
-        degree = numpy.count_nonzero(m[i])
+        degree = m.get_degree(i)
         if degree < min_degree:
             #print '{} < {}'.format(degree, min_degree)
             min_degree = degree
@@ -35,14 +35,30 @@ def get_min_degree_node(m):
     return min_degree_node
 
 
+
+
 def min_degree_node_from_set (mat, set):
-    dimension = len(mat)
+    dimension = mat.get_dimension()
     min_degree = dimension
     min_degree_node = 0
 
     for n in set:
-        degree = 0
-        for j in range(len(mat)):
+        degree = mat.get_degree(n)
+        if degree < min_degree:
+            min_degree = degree
+            min_degree_node = n
+
+    return min_degree_node
+
+'''
+def min_degree_node_from_set (mat, set):
+    dimension = mat.get_dimension()
+    min_degree = dimension
+    min_degree_node = 0
+
+    for n in set:
+        degree = 0  # ISSO ESTA CERTO ?
+        for j in range(mat.get_dimension()):
             if degree < min_degree:
                 if mat[n][j] != 0 and j != n:
                     degree += 1
@@ -52,14 +68,14 @@ def min_degree_node_from_set (mat, set):
             min_degree_node = n
 
     return min_degree_node
-
+'''
 
 def grow_set_and_check_peripherals(m, set, min_width = False, initial_p = None):
     ''' ([[]], list or set, bool) -> Peripheral '''
 
     p = peripherals.Peripherals(0, 0, 0) if not initial_p else initial_p
     
-    width_limit = len(m)
+    width_limit = m.get_dimension()
   
     set_size = len(set)
     print 'growing set size', len(set)

@@ -1,6 +1,7 @@
 '''
     Author: Eduardo Motta de Oliveira
 '''
+import graph
 import mat_loader
 
 buildRLS_count = 0
@@ -44,18 +45,15 @@ class RLS:
                 max_w = w_level
         return max_w
 
-    def printRLS (self):
-        print self.levelsArray
+    def __str__(self):
+        return str(self.levelsArray)
+
 
 def getNotVisitedAdjacents(m, vertex, visited):
     adj = []
-    tam = len(m[0])
-    for i in range(tam):
-        val = m[vertex][i]
-        
-        if val != 0:
-            if visited[i] == False:
-                adj.append(i)
+    for v in m.get_neighbours(vertex):
+        if visited[v] == False:
+            adj.append(v)
     return adj
 
 def buildRLS(m, root, max_w = 0, no_conseq = False):
@@ -65,7 +63,7 @@ def buildRLS(m, root, max_w = 0, no_conseq = False):
     limit_width = (max_w != 0)
 
     rls = RLS()
-    visited = [False for j in range(len(m))]
+    visited = [False for j in range(m.get_dimension())]
     l = [root]
 
     while (l):
@@ -78,7 +76,7 @@ def buildRLS(m, root, max_w = 0, no_conseq = False):
         for x in l:
             visited[x] = True
 
-        adj_set =set()
+        adj_set = set()
         for v in rls.lastLevel():
             adj = getNotVisitedAdjacents(m, v, visited)
             if no_conseq and not adj:
@@ -104,7 +102,7 @@ def eccentricity (m, root):
     return rls.numLevels() - 1
 
 def diameter (m):   
-    dimension = len(m)
+    dimension = m.get_dimension()
     maxEcc = 0
     for i in range(dimension):
         ecc = eccentricity(m, i)
@@ -119,6 +117,7 @@ if __name__ == "__main__":
     print 'importing ', filename
     mat = mat_loader.load(filename)
 
+    print buildRLS(mat, 2)
     print ' '
     d = diameter(mat)
     print 'Diameter: ', d

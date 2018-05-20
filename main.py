@@ -11,6 +11,7 @@ import sys
 import plot
 import time
 
+'''
 def print_fill_in(m):
     range_dim = range(len(mat))
     for i in range_dim:
@@ -18,7 +19,7 @@ def print_fill_in(m):
         for j in range_dim:
             print '{}'.format('x' if mat[i][j] != 0 else ' '),
         print '|'
-
+'''
 
 def run_method(mat, id):
     if id == 0:

@@ -1,6 +1,7 @@
 '''
     Author: Eduardo Motta de Oliveira
 '''
+import graph
 import mat_loader
 import rls
 import peripherals
@@ -8,7 +9,7 @@ import random
 import util
 
 def build_uv_rls(m, min_degree = False, no_conseq = False):
-    dimension = len(m)
+    dimension = m.get_dimension()
     checked = [False for i in range(dimension)]
 
     u = ( util.get_min_degree_node(m)
