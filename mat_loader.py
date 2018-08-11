@@ -52,7 +52,9 @@ def load(file):
 
             u = int(strs[0]) - 1
             v = int(strs[1]) - 1
-            if u != v:
+            weight = float(strs[2])
+
+            if u != v and weight != 0.0:
                 g.add_edge(u, v)
                 #g.add_edge(v, u)
 
